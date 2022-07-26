@@ -1,30 +1,19 @@
 package service;
 
 import domain.ConcretePerson;
+import domain.PeopleSearchResult;
 import domain.Person;
-import org.springframework.http.*;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 public class ConcretePersonservice implements PersonService{
 
-    private static final String GET_ALL_PERSONS_URI = "https://swapi.dev/api/people";
+    private static final String SEARCH_PERSONS_URI = "https://swapi.dev/api/people/?search=";
     private static final String GET_PERSON_BY_ID_URI = "https://swapi.dev/api/people/";
     static RestTemplate restTemplate = new RestTemplate();
-
-    /*@Override
-    public void DisplayAllPersonsFromAPI() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-
-        HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
-
-        ResponseEntity<String> result = restTemplate.exchange(GET_ALL_PERSONS_URI, HttpMethod.GET, entity, String.class);
-        System.out.println(result);
-    }*/
 
     /**
      * Searches for persons.
@@ -33,8 +22,15 @@ public class ConcretePersonservice implements PersonService{
      * @return the list of persons
      */
     @Override
-    public List<Person> search(String query) {
-        return null;
+    public List<ConcretePerson> search(String query) {
+        PeopleSearchResult searchResult = null;
+        try {
+            searchResult = restTemplate.getForObject(SEARCH_PERSONS_URI + query, PeopleSearchResult.class);
+        } catch (RestClientException e) {
+            throw new RuntimeException(e);
+        }
+        List<ConcretePerson> persons = searchResult.getResults();
+        return persons;
     }
 
     /**
@@ -46,9 +42,12 @@ public class ConcretePersonservice implements PersonService{
 
     @Override
     public Optional<Person> get(long id) {
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        Optional<Person> optPerson = Optional.ofNullable(restTemplate.getForObject(GET_PERSON_BY_ID_URI + id,ConcretePerson.class));
+        Optional<Person> optPerson = null;
+        try {
+            optPerson = Optional.ofNullable(restTemplate.getForObject(GET_PERSON_BY_ID_URI + id, ConcretePerson.class));
+        } catch (RestClientException e) {
+            throw new RuntimeException(e);
+        }
         return optPerson;
     }
 }

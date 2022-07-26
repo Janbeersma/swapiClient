@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 /**
  * The domain class representing a Star Wars movie.
- *
- * @author QNH
+ * @deprecated is not even used by the personservice.
+ * @author Florian.Romijn
  */
 public interface Film {
 

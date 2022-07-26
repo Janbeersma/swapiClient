@@ -42,19 +42,19 @@ public interface Person {
      *
      * @return the height of the person
      */
-    Integer getHeight();
+    float getHeight();
 
     /**
      * Retuns the weight of the person in kilograms.
      *
      * @return the weight of the person
      */
-    Integer getWeight();
+    float getMass();
 
     /**
      * Returns the films the person has been in.
      *
      * @return the films the person has been in
      */
-    List<ConcreteFilm> getFilms();
+    List<String> getFilms();
 }

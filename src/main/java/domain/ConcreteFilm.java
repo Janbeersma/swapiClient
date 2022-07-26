@@ -5,6 +5,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDate;
 
+/**
+ * @deprecated This class is not even used in the interfaces that needed to be implemented.
+ * @see service.PersonService
+ * @author Florian.Romijn
+ */
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ConcreteFilm implements Film {
     private String title;

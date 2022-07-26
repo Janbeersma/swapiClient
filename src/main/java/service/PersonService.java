@@ -2,6 +2,8 @@ package service;
 
 import java.util.List;
 import java.util.Optional;
+
+import domain.ConcretePerson;
 import domain.Person;
 
 /**
@@ -16,7 +18,7 @@ public interface PersonService {
      * @param query the query string
      * @return the list of persons
      */
-    List<Person> search(String query);
+    List<ConcretePerson> search(String query);
 
     /**
      * Returns the person with the provided id.

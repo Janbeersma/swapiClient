@@ -2,8 +2,21 @@ package domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
+
+/**
+ * The class for person objects that get returned from the swapi.dev api, implements the Person interface.
+ * @see domain.Person
+ * <p>
+ * @implNote in the interface there where a couple of mistakes: the api doesn't return an id, height and mass need to be float values they where int.
+ * </p>
+ * <p>
+ * List of films was given in the interface but the API doesn't return a list of Films rather a list of strings with the strings being urls to the films
+ * </p>
+ * @author Florian.Romijn
+* */
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ConcretePerson implements Person{
@@ -12,22 +25,22 @@ public class ConcretePerson implements Person{
     private String name;
     private String birth_year;
     private Gender gender;
-    private Integer heighth;
-    private Integer weigth;
-    private List<ConcreteFilm> films;
+    private float height;
+    private float mass;
+    private List<String> films;
 
     @JsonCreator
     public ConcretePerson() {
 
     }
 
-    public ConcretePerson(long id, String name, String birth_year, Gender gender, Integer heighth, Integer weigth, List<ConcreteFilm> films) {
+    public ConcretePerson(long id, String name, String birth_year, Gender gender, float heigth, float mass, List<String> films) {
         this.id = id;
         this.name = name;
         this.birth_year = birth_year;
         this.gender = gender;
-        this.heighth = heighth;
-        this.weigth = weigth;
+        this.height = heigth;
+        this.mass = mass;
         this.films = films;
     }
 
@@ -45,24 +58,23 @@ public class ConcretePerson implements Person{
     public String getBirthYear() {
         return birth_year;
     }
-
     @Override
     public Gender getGender() {
         return gender;
     }
 
     @Override
-    public Integer getHeight() {
-        return heighth;
+    public float getHeight() {
+        return height;
     }
 
     @Override
-    public Integer getWeight() {
-        return weigth;
+    public float getMass() {
+        return mass;
     }
 
     @Override
-    public List<ConcreteFilm> getFilms() {
+    public List<String> getFilms() {
         return films;
     }
 
@@ -86,23 +98,12 @@ public class ConcretePerson implements Person{
         this.gender = gender;
     }
 
-    public Integer getHeighth() {
-        return heighth;
+    public void setMass(Float mass) {
+        this.mass = mass;
     }
 
-    public void setHeighth(Integer heighth) {
-        this.heighth = heighth;
-    }
-
-    public Integer getWeigth() {
-        return weigth;
-    }
-
-    public void setWeigth(Integer weigth) {
-        this.weigth = weigth;
-    }
-
-    public void setFilms(List<ConcreteFilm> films) {
+    public void setFilms(List<String> films) {
         this.films = films;
     }
+
 }
