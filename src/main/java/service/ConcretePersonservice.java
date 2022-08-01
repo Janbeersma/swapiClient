@@ -24,6 +24,8 @@ public class ConcretePersonservice implements PersonService{
     @Override
     public List<ConcretePerson> search(String query) {
         PeopleSearchResult searchResult = null;
+        ConcreteDatabaseService databaseService = new ConcreteDatabaseService();
+        databaseService.insertIntoDB(query);
         try {
             searchResult = restTemplate.getForObject(SEARCH_PERSONS_URI + query, PeopleSearchResult.class);
         } catch (RestClientException e) {

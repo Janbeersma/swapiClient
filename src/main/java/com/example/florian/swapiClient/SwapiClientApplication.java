@@ -10,18 +10,27 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+import service.ConcreteDatabaseService;
 import service.ConcretePersonservice;
 
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * the main functie that uses the person search function to search for a person append that search to the analytics db and gets those db rows and deletes one
+ *
+ */
 @SpringBootApplication
 public class SwapiClientApplication {
 	private static final Logger log = LoggerFactory.getLogger(SwapiClientApplication.class);
 	public static void main(String[] args) {
 		ConcretePersonservice personservice = new ConcretePersonservice();
 		//Optional<Person> person = personservice.get(1);
-		List<ConcretePerson> searchResults = personservice.search("lu");
+		List<ConcretePerson> searchResults = personservice.search("verwijder deze entry");
+		ConcreteDatabaseService databaseService = new ConcreteDatabaseService();
+		databaseService.getFromDB();
+		databaseService.deleteFromDB(4);
+		databaseService.getFromDB();
 		SpringApplication.run(SwapiClientApplication.class, args);
 	}
 }

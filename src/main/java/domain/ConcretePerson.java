@@ -25,8 +25,8 @@ public class ConcretePerson implements Person{
     private String name;
     private String birth_year;
     private Gender gender;
-    private float height;
-    private float mass;
+    private String height;
+    private String mass;
     private List<String> films;
 
     @JsonCreator
@@ -34,7 +34,7 @@ public class ConcretePerson implements Person{
 
     }
 
-    public ConcretePerson(long id, String name, String birth_year, Gender gender, float heigth, float mass, List<String> films) {
+    public ConcretePerson(long id, String name, String birth_year, Gender gender, String heigth, String mass, List<String> films) {
         this.id = id;
         this.name = name;
         this.birth_year = birth_year;
@@ -64,12 +64,12 @@ public class ConcretePerson implements Person{
     }
 
     @Override
-    public float getHeight() {
+    public String getHeight() {
         return height;
     }
 
     @Override
-    public float getMass() {
+    public String getMass() {
         return mass;
     }
 
@@ -98,7 +98,9 @@ public class ConcretePerson implements Person{
         this.gender = gender;
     }
 
-    public void setMass(Float mass) {
+    public void setHeight(String height) {this.height = height;}
+
+    public void setMass(String mass) {
         this.mass = mass;
     }
 

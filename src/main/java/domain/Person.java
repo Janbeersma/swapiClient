@@ -42,14 +42,14 @@ public interface Person {
      *
      * @return the height of the person
      */
-    float getHeight();
+    String getHeight();
 
     /**
      * Retuns the weight of the person in kilograms.
      *
      * @return the weight of the person
      */
-    float getMass();
+    String getMass();
 
     /**
      * Returns the films the person has been in.
