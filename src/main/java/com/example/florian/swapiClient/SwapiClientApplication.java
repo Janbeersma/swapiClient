@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * the main functie that uses the person search function to search for a person append that search to the analytics db and gets those db rows and deletes one
+ * the main functie that uses the person search function to search for a person append that search to the analytics db and gets those db rows and deletes one, channge the id of the delete function with an existing id in the db
  *
  */
 @SpringBootApplication
@@ -25,11 +25,17 @@ public class SwapiClientApplication {
 	private static final Logger log = LoggerFactory.getLogger(SwapiClientApplication.class);
 	public static void main(String[] args) {
 		ConcretePersonservice personservice = new ConcretePersonservice();
-		//Optional<Person> person = personservice.get(1);
+
+		//function for getting a person based on id from the star wars api
+		Optional<Person> person = personservice.get(1);
+
 		List<ConcretePerson> searchResults = personservice.search("verwijder deze entry");
 		ConcreteDatabaseService databaseService = new ConcreteDatabaseService();
 		databaseService.getFromDB();
-		databaseService.deleteFromDB(4);
+
+		//change this id
+		databaseService.deleteFromDB(1);
+
 		databaseService.getFromDB();
 		SpringApplication.run(SwapiClientApplication.class, args);
 	}

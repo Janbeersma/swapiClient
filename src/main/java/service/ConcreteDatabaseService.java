@@ -40,7 +40,7 @@ public class ConcreteDatabaseService implements DatabaseService {
     }
 
     /**
-     * Function for gettin all the rows from the database
+     * Function for getting all the rows from the database
      *
      */
     @Override

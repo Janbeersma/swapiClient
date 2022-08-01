@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- * 
+ * Class implementing the Containable interface that is used to instantiate an object that is returned when the ConcretePersonservice searches for a person.
  */
 
 @JsonIgnoreProperties(ignoreUnknown = true)
